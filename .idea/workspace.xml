@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f9c6922-b9a7-46cc-aac6-d9a1ce33ec2c" name="Changes" comment="Инициализация проекта аналитики выплат">
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/classes/META-INF/payment-processing.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/classes/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/classes/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplicationKt.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/payment-processing-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/payment-processing-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/test-classes/META-INF/payment-processing.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-processing/target/test-classes/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/classes/META-INF/payment-processing.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/classes/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/classes/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplicationKt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/payment-processing-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/payment-processing-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/test-classes/META-INF/payment-processing.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/test-classes/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,17 +57,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Nastya/IdeaProjects/debezium-vs-kafka/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/payment.processing&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "C:/Users/Nastya/IdeaProjects/debezium-vs-kafka/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/payment.processing",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Nastya\IdeaProjects\debezium-vs-kafka" />
@@ -136,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715014982614</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Инициализация проекта аналитики выплат">
+      <created>1715015201677</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715015201677</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +167,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/payment-analyzing" />
+    </ignored-roots>
     <MESSAGE value="Полная реализация сервиса по обработке выплат (за исключением kafka) + инициализация сервиса по анализу выплат" />
     <MESSAGE value="Вынос файла gitignore" />
     <MESSAGE value="Инициализация проекта аналитики выплат" />

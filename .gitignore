@@ -1,7 +1,12 @@
-!**/target/
-!**/src/main/**/target/
-!**/src/test/**/target/
-!**/.mvn/wrapper/maven-wrapper.jar
+!payment-processing/target/
+!payment-processing/src/main/**/target/
+!payment-processing/src/test/**/target/
+!payment-processing/.mvn/wrapper/maven-wrapper.jar
+
+!payment-analyzing/target/
+!payment-analyzing/src/main/**/target/
+!payment-analyzing/src/test/**/target/
+!payment-analyzing/.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
