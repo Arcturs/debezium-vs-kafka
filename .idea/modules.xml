@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/debezium-vs-kafka.iml" filepath="$PROJECT_DIR$/debezium-vs-kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment-analyzing/payment-analyzing.iml" filepath="$PROJECT_DIR$/payment-analyzing/payment-analyzing.iml" />
       <module fileurl="file://$PROJECT_DIR$/payment-processing/payment-processing.iml" filepath="$PROJECT_DIR$/payment-processing/payment-processing.iml" />
     </modules>
   </component>

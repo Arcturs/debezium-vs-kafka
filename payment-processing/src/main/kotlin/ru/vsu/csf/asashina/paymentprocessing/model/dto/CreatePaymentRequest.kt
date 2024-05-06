@@ -14,7 +14,12 @@ data class CreatePaymentRequest(
     @field:Schema(description = "Имя получателя платежа", requiredMode = Schema.RequiredMode.REQUIRED, example = "Bob")
     val recipient: String? = null,
 
+    @field:Schema(
+        description = "Сумма выплаты",
+        requiredMode = Schema.RequiredMode.REQUIRED,
+        example = "200.00",
+        format = "double"
+    )
     @field:NotNull(message = "Сумма выплаты должна присутствовать")
-    @field:Schema(description = "Сумма выплаты", requiredMode = Schema.RequiredMode.REQUIRED, example = "200.00")
     val amount: BigDecimal? = null
 )

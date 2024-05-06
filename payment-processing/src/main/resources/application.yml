@@ -1,3 +1,27 @@
 spring:
-  application:
-    name: payment-processing
+  application.name: payment-processing
+  profiles.active: ${ACTIVE_PROFILE:kafka}
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5435}/${DATABASE_NAME:paymentdb}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  liquibase.change-log: classpath:db/changelog-master.yaml
+
+server:
+  port: 8080
+  shutdown: graceful
+  servlet.context-path: /api/v1
+
+management:
+  server.port: 8081
+  endpoint:
+    health.enabled: true
+    info.enabled: true
+    prometheus.enabled: true
+    metrics.enabled: true
+    loggers.enabled: true
+
+springdoc:
+  swagger-ui:
+    path: '/swagger-ui'
+    disable-swagger-default-url: true

@@ -1,0 +1,53 @@
+version: '3'
+services:
+  paymentDB:
+    image: postgres:15.1-alpine
+    restart: always
+    ports:
+      - 5435:5432
+    container_name: paymentDB
+    environment:
+      - POSTGRES_USER=${PAYMENT_DB_USERNAME}
+      - POSTGRES_PASSWORD=${PAYMENT_DB_PASSWORD}
+      - POSTGRES_DB=${PAYMENT_DB_NAME}
+    command: [ "postgres", "-c", "wal_level=logical" ]
+    volumes:
+      - paymentdb_data:/var/lib/postgresql/data
+
+  processing-kafka:
+    image: payment_backend
+    container_name: processing-kafka
+    build:
+      context: payment-processing/.
+    ports:
+      - 8080:8080
+      - 8081:8081
+    depends_on:
+      - paymentDB
+    environment:
+      - DATABASE_HOST=${PAYMENT_DB_HOST}
+      - DATABASE_PORT=5435
+      - DATABASE_NAME=${PAYMENT_DB_NAME}
+      - DATABASE_USERNAME=${PAYMENT_DB_USERNAME}
+      - DATABASE_PASSWORD=${PAYMENT_DB_PASSWORD}
+
+  processing-debezium:
+    image: payment_backend
+    container_name: processing-kafka
+    build:
+      context: payment-processing/.
+    ports:
+      - 8082:8080
+      - 8083:8081
+    depends_on:
+      - paymentDB
+    environment:
+      - ACTIVE_PROFILE=debezium
+      - DATABASE_HOST=${PAYMENT_DB_HOST}
+      - DATABASE_PORT=5435
+      - DATABASE_NAME=${PAYMENT_DB_NAME}
+      - DATABASE_USERNAME=${PAYMENT_DB_USERNAME}
+      - DATABASE_PASSWORD=${PAYMENT_DB_PASSWORD}
+
+volumes:
+  paymentdb_data:

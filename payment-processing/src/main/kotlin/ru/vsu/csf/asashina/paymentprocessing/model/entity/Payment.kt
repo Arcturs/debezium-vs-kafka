@@ -31,6 +31,9 @@ class Payment {
     @get:Column
     var rowUpdateTime: LocalDateTime? = null
 
+    @get:Column
+    var comment: String? = null
+
     override fun equals(other: Any?) = id == (other as? Payment)?.id
 
     override fun hashCode() = id.hashCode()
@@ -41,7 +44,8 @@ class Payment {
             "amount=$amount, " +
             "status=${status!!.name}, " +
             "rowInsertTime=${rowInsertTime.toString()}, " +
-            "rowUpdateTime=${rowUpdateTime.toString()})"
+            "rowUpdateTime=${rowUpdateTime.toString()}, " +
+            "comment=$comment)"
 
     companion object {
         const val TABLE_NAME = "payment"

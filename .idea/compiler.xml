@@ -7,14 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="payment-processing" />
+        <module name="payment-analyzing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="payment-analyzing" target="17" />
       <module name="payment-processing" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="payment-analyzing" options="-parameters" />
       <module name="payment-processing" options="-parameters" />
     </option>
   </component>
