@@ -2,6 +2,7 @@ package ru.vsu.csf.asashina.paymentprocessing.service
 
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import ru.vsu.csf.asashina.paymentprocessing.dictionary.PaymentStatus
 import ru.vsu.csf.asashina.paymentprocessing.model.dto.CreatePaymentRequest
 import ru.vsu.csf.asashina.paymentprocessing.model.dto.CreatePaymentResponse
@@ -21,6 +22,7 @@ class CreatePaymentServiceWithKafka(
     private val repository: PaymentRepository
 ): CreatePaymentService {
 
+    @Transactional
     override fun createPayment(request: CreatePaymentRequest): CreatePaymentResponse {
         val payment = repository.save(
             Payment().apply {
@@ -44,6 +46,7 @@ class CreatePaymentServiceWithoutKafka(
     private val repository: PaymentRepository
 ): CreatePaymentService {
 
+    @Transactional
     override fun createPayment(request: CreatePaymentRequest): CreatePaymentResponse {
         val payment = repository.save(
             Payment().apply {
