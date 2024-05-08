@@ -4,12 +4,12 @@ services:
     image: postgres:15.1-alpine
     restart: always
     ports:
-      - 5435:5432
+      - "5435:5432"
     container_name: paymentDB
     environment:
-      - POSTGRES_USER=${PAYMENT_DB_USERNAME}
-      - POSTGRES_PASSWORD=${PAYMENT_DB_PASSWORD}
-      - POSTGRES_DB=${PAYMENT_DB_NAME}
+      POSTGRES_USER: ${PAYMENT_DB_USERNAME}
+      POSTGRES_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      POSTGRES_DB: ${PAYMENT_DB_NAME}
     command: [ "postgres", "-c", "wal_level=logical" ]
     volumes:
       - paymentdb_data:/var/lib/postgresql/data
@@ -18,12 +18,12 @@ services:
     image: postgres:15.1-alpine
     restart: always
     ports:
-      - 5434:5432
+      - "5434:5432"
     container_name: statisticDB
     environment:
-      - POSTGRES_USER=${STATISTIC_DB_USERNAME}
-      - POSTGRES_PASSWORD=${STATISTIC_DB_PASSWORD}
-      - POSTGRES_DB=${STATISTIC_DB_NAME}
+      POSTGRES_USER: ${STATISTIC_DB_USERNAME}
+      POSTGRES_PASSWORD: ${STATISTIC_DB_PASSWORD}
+      POSTGRES_DB: ${STATISTIC_DB_NAME}
     command: [ "postgres", "-c", "wal_level=logical" ]
     volumes:
       - statisticdb_data:/var/lib/postgresql/data
@@ -34,16 +34,16 @@ services:
     build:
       context: payment-processing/.
     ports:
-      - 8080:8080
-      - 8081:8081
+      - "8080:8080"
+      - "8081:8081"
     depends_on:
       - paymentDB
     environment:
-      - DATABASE_HOST=${PAYMENT_DB_HOST}
-      - DATABASE_PORT=5435
-      - DATABASE_NAME=${PAYMENT_DB_NAME}
-      - DATABASE_USERNAME=${PAYMENT_DB_USERNAME}
-      - DATABASE_PASSWORD=${PAYMENT_DB_PASSWORD}
+      DATABASE_HOST: ${PAYMENT_DB_HOST}
+      DATABASE_PORT: 5435
+      DATABASE_NAME: ${PAYMENT_DB_NAME}
+      DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
+      DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
 
   processing-debezium:
     image: payment_backend
@@ -51,17 +51,17 @@ services:
     build:
       context: payment-processing/.
     ports:
-      - 8082:8080
-      - 8083:8081
+      - "8082:8080"
+      - "8083:8081"
     depends_on:
       - paymentDB
     environment:
-      - ACTIVE_PROFILE=debezium
-      - DATABASE_HOST=${PAYMENT_DB_HOST}
-      - DATABASE_PORT=5435
-      - DATABASE_NAME=${PAYMENT_DB_NAME}
-      - DATABASE_USERNAME=${PAYMENT_DB_USERNAME}
-      - DATABASE_PASSWORD=${PAYMENT_DB_PASSWORD}
+      ACTIVE_PROFILE: "debezium"
+      DATABASE_HOST: ${PAYMENT_DB_HOST}
+      DATABASE_PORT: 5435
+      DATABASE_NAME: ${PAYMENT_DB_NAME}
+      DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
+      DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
 
   analyzing:
     image: analyzing_backend
@@ -69,16 +69,40 @@ services:
     build:
       context: payment-analyzing/.
     ports:
-      - 8084:8080
-      - 8085:8081
+      - "8084:8080"
+      - "8085:8081"
     depends_on:
-      - paymentDB
+      - analyzingDB
     environment:
-      - DATABASE_HOST=${STATISTIC_DB_HOST}
-      - DATABASE_PORT=5434
-      - DATABASE_NAME=${STATISTIC_DB_NAME}
-      - DATABASE_USERNAME=${STATISTIC_DB_USERNAME}
-      - DATABASE_PASSWORD=${STATISTIC_DB_PASSWORD}
+      DATABASE_HOST: ${STATISTIC_DB_HOST}
+      DATABASE_PORT: 5434
+      DATABASE_NAME: ${STATISTIC_DB_NAME}
+      DATABASE_USERNAME: ${STATISTIC_DB_USERNAME}
+      DATABASE_PASSWORD: ${STATISTIC_DB_PASSWORD}
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SERVER_ID: 1
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_MIN_INSYNC_REPLICAS: 1
+      KAFKA_BROKER_ID: 1
+      KAFKA_CREATE_TOPICS: "baeldung:1:1"
+    depends_on:
+      - zookeeper
 
 volumes:
   paymentdb_data:
