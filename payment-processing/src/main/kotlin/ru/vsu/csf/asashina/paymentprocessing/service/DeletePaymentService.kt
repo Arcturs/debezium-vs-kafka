@@ -6,16 +6,13 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ru.vsu.csf.asashina.paymentprocessing.constant.CommonConstants
 import ru.vsu.csf.asashina.paymentprocessing.dictionary.OperationType
-import ru.vsu.csf.asashina.paymentprocessing.dictionary.PaymentStatus
 import ru.vsu.csf.asashina.paymentprocessing.exception.PaymentDoesNotExistException
-import ru.vsu.csf.asashina.paymentprocessing.exception.PaymentInFinalStatusException
-import ru.vsu.csf.asashina.paymentprocessing.model.dto.UpdatePaymentStatusRequest
 import ru.vsu.csf.asashina.paymentprocessing.model.kafka.EventMessage
 import ru.vsu.csf.asashina.paymentprocessing.producer.EventKafkaProducer
 import ru.vsu.csf.asashina.paymentprocessing.repository.PaymentRepository
 
 @Service
-class UpdatePaymentStatusService(
+class DeletePaymentService(
     private val repository: PaymentRepository,
     private val producer: EventKafkaProducer,
     @Value("\${spring.profiles.active}")
@@ -23,24 +20,16 @@ class UpdatePaymentStatusService(
 ) {
 
     @Transactional
-    fun updatePaymentStatus(id: Long, request: UpdatePaymentStatusRequest) {
+    fun deletePayment(id: Long) {
         val payment = repository.findById(id)
             .orElseThrow { PaymentDoesNotExistException(message = "Платежа с ИД $id не существует") }
-        if (FINAL_STATUSES.contains(payment.status)) {
-            throw PaymentInFinalStatusException(message = "Платеж находится в конечном статусе, изменения не применены")
-        }
-        repository.save(
-            payment.apply {
-                status = request.actualStatus
-                comment = request.comment
-            }
-        )
+        repository.delete(payment)
         if (profile == CommonConstants.KAFKA_PROFILE) {
             runBlocking {
                 producer.sendMessage(
                     EventMessage().apply {
                         paymentId = payment.id
-                        operation = OperationType.UPDATE
+                        operation = OperationType.DELETE
                         paymentStatus = payment.status
                         rowInsertTime = payment.rowInsertTime
                         rowUpdateTime = payment.rowUpdateTime
@@ -48,10 +37,6 @@ class UpdatePaymentStatusService(
                 )
             }
         }
-    }
-
-    private companion object {
-        val FINAL_STATUSES = setOf(PaymentStatus.ACCEPTED, PaymentStatus.DECLINED)
     }
 
 }

@@ -42,7 +42,7 @@ class Payment {
             "payer=$payer, " +
             "recipient=$recipient, " +
             "amount=$amount, " +
-            "status=${status!!.name}, " +
+            "paymentStatus=${status!!.name}, " +
             "rowInsertTime=${rowInsertTime.toString()}, " +
             "rowUpdateTime=${rowUpdateTime.toString()}, " +
             "comment=$comment)"

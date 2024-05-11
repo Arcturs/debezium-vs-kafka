@@ -31,7 +31,7 @@ data class UpdatePaymentStatusRequest(
     @delegate:Hidden
     @delegate:JsonIgnore
     val actualStatus: PaymentStatus? by lazy {
-        kotlin.runCatching { PaymentStatus.valueOf(status!!) }
+        runCatching { PaymentStatus.valueOf(status!!) }
             .onFailure { throw IllegalArgumentException("Значение $status не является статусом выплаты") }
             .getOrThrow()
     }

@@ -5,7 +5,12 @@ spring:
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
   liquibase.change-log: classpath:db/changelog-master.yaml
-
+  kafka.consumer:
+    bootstrap-servers: localhost:9092
+    group-id: payment.change.log.1
+    max-poll-records: 5000
+    topic: ${KAFKA_TOPIC:payment.change.log}
+    partitions: 4
 server:
   port: 8080
   shutdown: graceful

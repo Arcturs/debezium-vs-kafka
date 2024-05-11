@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 import ru.vsu.csf.asashina.paymentprocessing.model.dto.CreatePaymentRequest
 import ru.vsu.csf.asashina.paymentprocessing.model.dto.UpdatePaymentStatusRequest
 import ru.vsu.csf.asashina.paymentprocessing.service.CreatePaymentService
+import ru.vsu.csf.asashina.paymentprocessing.service.DeletePaymentService
 import ru.vsu.csf.asashina.paymentprocessing.service.GetPaymentService
 import ru.vsu.csf.asashina.paymentprocessing.service.UpdatePaymentStatusService
 
@@ -25,7 +27,8 @@ import ru.vsu.csf.asashina.paymentprocessing.service.UpdatePaymentStatusService
 class PaymentController(
     private val createPaymentService: CreatePaymentService,
     private val getPaymentService: GetPaymentService,
-    private val updatePaymentStatusService: UpdatePaymentStatusService
+    private val updatePaymentStatusService: UpdatePaymentStatusService,
+    private val deletePaymentService: DeletePaymentService
 ) {
 
     @GetMapping("/{id}")
@@ -57,5 +60,17 @@ class PaymentController(
         @RequestBody @Valid request: UpdatePaymentStatusRequest
     ) = ResponseEntity.status(204)
             .body(updatePaymentStatusService.updatePaymentStatus(paymentId, request))
+
+    @DeleteMapping("/{id}")
+    @Operation(description = "Удалить выплату", operationId = "deletePayment")
+    fun deletePayment(
+        @Parameter(
+            description = "ИД выплаты",
+            `in` = ParameterIn.PATH,
+            required = true
+        )
+        @PathVariable("id") paymentId: Long
+    ) = ResponseEntity.status(204)
+        .body(deletePaymentService.deletePayment(paymentId))
 
 }

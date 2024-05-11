@@ -1,10 +1,10 @@
-package ru.vsu.csf.asashina.paymentanalyzing.model
+package ru.vsu.csf.asashina.paymentanalyzing.model.entity
 
 import io.swagger.v3.oas.annotations.media.Schema
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import ru.vsu.csf.asashina.paymentanalyzing.dictionary.StatisticStatus
-import ru.vsu.csf.asashina.paymentanalyzing.model.Statistic.Companion.TABLE_NAME
+import ru.vsu.csf.asashina.paymentanalyzing.model.entity.Statistic.Companion.TABLE_NAME
 
 @Table(value = TABLE_NAME)
 class Statistic {

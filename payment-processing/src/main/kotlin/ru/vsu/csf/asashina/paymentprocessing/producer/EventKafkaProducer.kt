@@ -1,0 +1,27 @@
+package ru.vsu.csf.asashina.paymentprocessing.producer
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.kafka.core.KafkaTemplate
+import org.springframework.stereotype.Component
+import ru.vsu.csf.asashina.paymentprocessing.model.kafka.EventMessage
+
+@Component
+class EventKafkaProducer(
+    private val kafkaTemplate: KafkaTemplate<String, EventMessage>,
+    @Value("\${kafka.topic.producer}")
+    private val topic: String
+) {
+
+    suspend fun sendMessage(message: EventMessage) {
+        log.trace("--- Отправка сообщения {} в Кафку ---", message)
+        kafkaTemplate.send(topic, message)
+        log.trace("--- Сообщение {} успешно отправлено в Кафку ---", message)
+    }
+
+    private companion object {
+        val log: Logger = LoggerFactory.getLogger(EventKafkaProducer::class.java)
+    }
+
+}

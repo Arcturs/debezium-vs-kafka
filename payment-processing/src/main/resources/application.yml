@@ -6,6 +6,9 @@ spring:
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
   liquibase.change-log: classpath:db/changelog-master.yaml
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic: ${KAFKA_TOPIC:payment.change.log}
 
 server:
   port: 8080
@@ -25,3 +28,7 @@ springdoc:
   swagger-ui:
     path: '/swagger-ui'
     disable-swagger-default-url: true
+
+logging:
+  level:
+    ru.vsu.csf.asashina.paymentprocessing.producer: TRACE

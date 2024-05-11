@@ -4,7 +4,7 @@ import org.springframework.data.jdbc.repository.query.Query
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 import ru.vsu.csf.asashina.paymentanalyzing.dictionary.StatisticStatus
-import ru.vsu.csf.asashina.paymentanalyzing.model.Statistic
+import ru.vsu.csf.asashina.paymentanalyzing.model.entity.Statistic
 
 @Repository
 interface StatisticRepository : CrudRepository<Statistic, Long> {
