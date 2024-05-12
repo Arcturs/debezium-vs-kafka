@@ -1,6 +1,5 @@
 package ru.vsu.csf.asashina.paymentprocessing.service
 
-import kotlinx.coroutines.runBlocking
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -36,21 +35,19 @@ class CreatePaymentService(
             }
         )
         if (profile == KAFKA_PROFILE) {
-             runBlocking {
-                producer.sendMessage(
-                    EventMessage().apply {
-                        paymentId = payment.id
-                        operation = OperationType.CREATE
-                        payer = payment.payer
-                        recipient = payment.recipient
-                        amount = payment.amount
-                        paymentStatus = payment.status
-                        rowInsertTime = payment.rowInsertTime
-                        rowUpdateTime = payment.rowUpdateTime
-                        comment = payment.comment
-                    }
-                )
-            }
+            producer.sendMessage(
+                EventMessage().apply {
+                    paymentId = payment.id
+                    operation = OperationType.CREATE
+                    payer = payment.payer
+                    recipient = payment.recipient
+                    amount = payment.amount
+                    paymentStatus = payment.status
+                    rowInsertTime = payment.rowInsertTime
+                    rowUpdateTime = payment.rowUpdateTime
+                    comment = payment.comment
+                }
+            )
         }
         return CreatePaymentResponse(id = payment.id)
     }

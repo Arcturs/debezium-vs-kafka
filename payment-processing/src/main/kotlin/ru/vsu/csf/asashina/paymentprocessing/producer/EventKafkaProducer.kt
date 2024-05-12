@@ -14,10 +14,16 @@ class EventKafkaProducer(
     private val topic: String
 ) {
 
-    suspend fun sendMessage(message: EventMessage) {
+    fun sendMessage(message: EventMessage) {
         log.trace("--- Отправка сообщения {} в Кафку ---", message)
         kafkaTemplate.send(topic, message)
-        log.trace("--- Сообщение {} успешно отправлено в Кафку ---", message)
+            .whenComplete { _, exception ->
+                if (exception == null) {
+                    log.trace("--- Сообщение {} успешно отправлено в Кафку ---", message)
+                } else {
+                    log.warn("--- Сообщение {} не было отправлено в Кафку ---", message, exception)
+                }
+            }
     }
 
     private companion object {

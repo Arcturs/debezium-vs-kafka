@@ -29,3 +29,22 @@ springdoc:
   swagger-ui:
     path: '/swagger-ui'
     disable-swagger-default-url: true
+
+debezium:
+  offset:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5434}/${DATABASE_NAME:statisticdb}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  target:
+    hostname: ${PAYMENT_DATABASE_HOST:localhost}
+    port: ${PAYMENT_DATABASE_PORT:5435}
+    dbname: ${PAYMENT_DATABASE_NAME:paymentdb}
+    table: ${PAYMENT_DATABASE_TABLE:payment}
+    username: ${PAYMENT_DATABASE_USERNAME}
+    password: ${PAYMENT_DATABASE_PASSWORD}
+
+logging:
+  level:
+    ru.vsu.csf.asashina.paymentanalyzing:
+      consumer: TRACE
+      listener: TRACE

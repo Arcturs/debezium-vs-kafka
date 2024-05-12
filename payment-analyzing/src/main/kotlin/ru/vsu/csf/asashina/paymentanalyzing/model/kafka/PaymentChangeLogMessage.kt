@@ -48,10 +48,6 @@ data class PaymentChangeLogMessage(
             .getOrThrow()
     }
 
-    val actualPaymentStatus by lazy {
-        runCatching { PaymentStatus.valueOf(paymentStatus!!) }
-            .onFailure { throw IllegalArgumentException("Значение $paymentStatus не является статусом платежа") }
-            .getOrThrow()
-    }
+    val actualPaymentStatus by lazy { PaymentStatus.fromValue(paymentStatus!!) }
 
 }
