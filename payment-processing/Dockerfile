@@ -11,6 +11,6 @@ COPY --from=BUILDER /opt/build/processing/target/*.jar /opt/app/processing/proce
 
 RUN apk --no-cache add curl
 
-EXPOSE 8080 8081
+EXPOSE 8080 8091
 
 ENTRYPOINT ["java","-jar", "/opt/app/processing/processing.jar"]

@@ -6,7 +6,7 @@ spring:
     password: ${DATABASE_PASSWORD}
   liquibase.change-log: classpath:db/changelog-master.yaml
   kafka.consumer:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER}
     group-id: payment.change.log.1
     max-poll-records: 5000
     topic: ${KAFKA_TOPIC:payment.change.log}
@@ -17,7 +17,7 @@ server:
   servlet.context-path: /api/v1
 
 management:
-  server.port: 8081
+  server.port: 8091
   endpoint:
     health.enabled: true
     info.enabled: true

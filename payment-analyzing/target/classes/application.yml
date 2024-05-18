@@ -1,0 +1,51 @@
+spring:
+  application.name: payment-analyzing
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5434}/${DATABASE_NAME:statisticdb}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:gdpnsiGS9Fk}
+  liquibase:
+    change-log: classpath:db/changelog-master.yaml
+  kafka.consumer:
+    bootstrap-servers: localhost:9092
+    group-id: payment.change.log.1
+    max-poll-records: 5000
+    topic: ${KAFKA_TOPIC:payment.change.log}
+    partitions: 4
+server:
+  port: 8080
+  shutdown: graceful
+  servlet.context-path: /api/v1
+
+management:
+  server.port: 8091
+  endpoint:
+    health.enabled: true
+    info.enabled: true
+    prometheus.enabled: true
+    metrics.enabled: true
+    loggers.enabled: true
+
+springdoc:
+  swagger-ui:
+    path: '/swagger-ui'
+    disable-swagger-default-url: true
+
+debezium:
+  offset:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5434}/${DATABASE_NAME:statisticdb}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:gdpnsiGS9Fk}
+  target:
+    hostname: ${PAYMENT_DATABASE_HOST:localhost}
+    port: ${PAYMENT_DATABASE_PORT:5435}
+    dbname: ${PAYMENT_DATABASE_NAME:paymentdb}
+    table: ${PAYMENT_DATABASE_TABLE:payment}
+    username: ${PAYMENT_DATABASE_USERNAME:postgres}
+    password: ${PAYMENT_DATABASE_PASSWORD:Kjh98hoLL5}
+
+logging:
+  level:
+    ru.vsu.csf.asashina.paymentanalyzing:
+      consumer: TRACE
+      listener: TRACE

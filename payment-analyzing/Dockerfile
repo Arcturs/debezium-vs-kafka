@@ -11,6 +11,6 @@ COPY --from=BUILDER /opt/build/analyzing/target/*.jar /opt/app/analyzing/analyzi
 
 RUN apk --no-cache add curl
 
-EXPOSE 8080 8081
+EXPOSE 8080 8091
 
 ENTRYPOINT ["java","-jar", "/opt/app/analyzing/analyzing.jar"]

@@ -4,17 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f9c6922-b9a7-46cc-aac6-d9a1ce33ec2c" name="Changes" comment="Добавление кафки в оба сервиса">
+    <list default="true" id="2f9c6922-b9a7-46cc-aac6-d9a1ce33ec2c" name="Changes" comment="Добавление кафки в docker-compose файл">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_reflect_1_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_common_1_7_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-analyzing/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-analyzing/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/consumer/PaymentKafkaConsumer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/consumer/PaymentKafkaConsumer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/service/StatisticService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/service/GetStatisticsService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/PaymentAnalyzingApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/PaymentAnalyzingApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/config/DebeziumConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/config/DebeziumConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/config/KafkaConsumerConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/src/main/kotlin/ru/vsu/csf/asashina/paymentanalyzing/config/KafkaConsumerConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-analyzing/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-analyzing/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-analyzing/src/test/kotlin/ru/vsu/csf/asashina/paymentanalyzing/TestPaymentAnalyzingApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-processing/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/PaymentProcessingApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/config/KafkaProducerConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/config/KafkaProducerConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/producer/EventKafkaProducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/producer/EventKafkaProducer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/service/CreatePaymentService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/service/CreatePaymentService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/service/DeletePaymentService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/service/DeletePaymentService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/service/UpdatePaymentStatusService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/kotlin/ru/vsu/csf/asashina/paymentprocessing/service/UpdatePaymentStatusService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +38,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Enum" />
         <option value="Kotlin Annotation" />
+        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -55,6 +68,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -65,7 +82,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;spring.boot&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;b7e052087e00bbfeae8aad9f7e0e3ede&quot;
   }
 }</component>
@@ -79,8 +96,11 @@
       <recent name="ru.vsu.csf.asashina.paymentanalyzing.model.entity" />
       <recent name="ru.vsu.csf.asashina.paymentprocessing.model.entity" />
     </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="ru.vsu.csf.asashina.paymentprocessing.config" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Docker.docker-compose.yaml.processing-kafka: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="payment-processing" />
       <method v="2">
@@ -108,6 +128,80 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="docker-compose.yaml.analyzing: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="analyzing" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="kafka" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.processing-debezium: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="processing-debezium" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.processing-kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="processing-kafka" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.zookeeper: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="zookeeper" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yaml.processing-kafka: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.processing-debezium: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.analyzing: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.kafka: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.zookeeper: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -120,6 +214,11 @@
       <workItem from="1714982941410" duration="7175000" />
       <workItem from="1715155257674" duration="510000" />
       <workItem from="1715157374684" duration="1460000" />
+      <workItem from="1715846882920" duration="3014000" />
+      <workItem from="1716039129678" duration="1208000" />
+      <workItem from="1716040378474" duration="4883000" />
+      <workItem from="1716045374706" duration="37000" />
+      <workItem from="1716045481823" duration="7032000" />
     </task>
     <task id="LOCAL-00001" summary="Полная реализация сервиса по обработке выплат (за исключением kafka) + инициализация сервиса по анализу выплат">
       <created>1714991345282</created>
@@ -190,5 +289,9 @@
     <MESSAGE value="Завершение бизнес-логики второго сервиса + правка багов" />
     <MESSAGE value="Добавление кафки в оба сервиса" />
     <option name="LAST_COMMIT_MESSAGE" value="Добавление кафки в оба сервиса" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

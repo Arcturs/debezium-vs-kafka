@@ -1,0 +1,43 @@
+name: Build payment services
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  processing-build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Maven package
+        run: |
+          cd payment-processing
+          mvn clean package -B -DskipTests
+
+  analyzing-build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Maven package
+        run: |
+          cd payment-analyzing
+          mvn clean package -B -DskipTests

@@ -1,21 +1,12 @@
 package ru.vsu.csf.asashina.paymentanalyzing.config
 
-import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-@ConfigurationProperties(prefix = "debezium")
 class DebeziumConfig(
-    private val offsetUrl: String,
-    private val offsetUsername: String,
-    private val offsetPassword: String,
-    private val targetHostname: String,
-    private val targetPort: String,
-    private val targetDbname: String,
-    private val targetTable: String,
-    private val targetUsername: String,
-    private val targetPassword: String
+    private val debeziumOffsetProperties: DebeziumOffsetProperties,
+    private val debeziumTargetProperties: DebeziumTargetProperties
 ) {
 
     @Bean
@@ -23,26 +14,31 @@ class DebeziumConfig(
         io.debezium.config.Configuration.from(
             mapOf(
                 NAME_PROPERTY to CONNECTOR_NAME,
+                TOPIC_PREFIX_PROPERTY to CONNECTOR_TOPIC,
                 CONNECTOR_CLASS_PROPERTY to CONNECTOR_CLASS,
                 OFFSET_STORAGE_PROPERTY to CONNECTOR_OFFSET_STORAGE,
-                OFFSET_STORAGE_JDBC_URL_PROPERTY to offsetUrl,
-                OFFSET_STORAGE_JDBC_USER_PROPERTY to offsetUsername,
-                OFFSET_STORAGE_JDBC_PASSWORD_PROPERTY to offsetPassword,
-                DATABASE_HOSTNAME_PROPERTY to targetHostname,
-                DATABASE_PORT_PROPERTY to targetPort,
-                DATABASE_USER_PROPERTY to targetUsername,
-                DATABASE_PASSWORD_PROPERTY to targetPassword,
-                DATABASE_DBNAME_PROPERTY to targetDbname,
-                TABLE_INCLUDE_LIST_PROPERTY to targetTable
+                OFFSET_STORAGE_JDBC_URL_PROPERTY to debeziumOffsetProperties.url,
+                OFFSET_STORAGE_JDBC_USER_PROPERTY to debeziumOffsetProperties.username,
+                OFFSET_STORAGE_JDBC_PASSWORD_PROPERTY to debeziumOffsetProperties.password,
+                DATABASE_HOSTNAME_PROPERTY to debeziumTargetProperties.hostname,
+                DATABASE_PORT_PROPERTY to debeziumTargetProperties.port,
+                DATABASE_USER_PROPERTY to debeziumTargetProperties.username,
+                DATABASE_PASSWORD_PROPERTY to debeziumTargetProperties.password,
+                DATABASE_DBNAME_PROPERTY to debeziumTargetProperties.dbname,
+                TABLE_INCLUDE_LIST_PROPERTY to debeziumTargetProperties.table,
+                PLUGIN_NAME_PROPERTY to CONNECTOR_PLUGIN_NAME
             )
         )
 
     private companion object {
         const val CONNECTOR_NAME = "payment-analyzing-connector"
+        const val CONNECTOR_TOPIC = "payment-analyzing-topic"
         const val CONNECTOR_CLASS = "io.debezium.connector.postgresql.PostgresConnector"
         const val CONNECTOR_OFFSET_STORAGE = "io.debezium.storage.jdbc.offset.JdbcOffsetBackingStore"
+        const val CONNECTOR_PLUGIN_NAME = "pgoutput"
 
         const val NAME_PROPERTY = "name"
+        const val TOPIC_PREFIX_PROPERTY = "topic.prefix"
         const val CONNECTOR_CLASS_PROPERTY = "connector.class"
         const val OFFSET_STORAGE_PROPERTY = "offset.storage"
         const val OFFSET_STORAGE_JDBC_URL_PROPERTY = "offset.storage.jdbc.url"
@@ -54,6 +50,7 @@ class DebeziumConfig(
         const val DATABASE_PASSWORD_PROPERTY = "database.password"
         const val DATABASE_DBNAME_PROPERTY = "database.dbname"
         const val TABLE_INCLUDE_LIST_PROPERTY = "table.include.list"
+        const val PLUGIN_NAME_PROPERTY = "plugin.name"
     }
 
 }

@@ -10,7 +10,7 @@ import ru.vsu.csf.asashina.paymentprocessing.model.kafka.EventMessage
 @Component
 class EventKafkaProducer(
     private val kafkaTemplate: KafkaTemplate<String, EventMessage>,
-    @Value("\${kafka.topic.producer}")
+    @Value("\${spring.kafka.topic}")
     private val topic: String
 ) {
 

@@ -35,7 +35,7 @@ services:
       context: payment-processing/.
     ports:
       - "8080:8080"
-      - "8081:8081"
+      - "8091:8091"
     depends_on:
       - paymentDB
     environment:
@@ -44,15 +44,16 @@ services:
       DATABASE_NAME: ${PAYMENT_DB_NAME}
       DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
       DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      KAFKA_BOOTSTRAP_SERVER: ${KAFKA_BOOTSTRAP_SERVER}
 
   processing-debezium:
     image: payment_backend
-    container_name: processing-kafka
+    container_name: processing-debezium
     build:
       context: payment-processing/.
     ports:
       - "8082:8080"
-      - "8083:8081"
+      - "8093:8091"
     depends_on:
       - paymentDB
     environment:
@@ -62,6 +63,7 @@ services:
       DATABASE_NAME: ${PAYMENT_DB_NAME}
       DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
       DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      KAFKA_BOOTSTRAP_SERVER: ${KAFKA_BOOTSTRAP_SERVER}
 
   analyzing:
     image: analyzing_backend
@@ -70,15 +72,21 @@ services:
       context: payment-analyzing/.
     ports:
       - "8084:8080"
-      - "8085:8081"
+      - "8095:8091"
     depends_on:
-      - analyzingDB
+      - statisticDB
     environment:
       DATABASE_HOST: ${STATISTIC_DB_HOST}
       DATABASE_PORT: 5434
       DATABASE_NAME: ${STATISTIC_DB_NAME}
       DATABASE_USERNAME: ${STATISTIC_DB_USERNAME}
       DATABASE_PASSWORD: ${STATISTIC_DB_PASSWORD}
+      PAYMENT_DATABASE_HOST: ${PAYMENT_DB_HOST}
+      PAYMENT_DATABASE_PORT: 5435
+      PAYMENT_DATABASE_NAME: ${PAYMENT_DB_NAME}
+      PAYMENT_DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
+      PAYMENT_DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      KAFKA_BOOTSTRAP_SERVER: ${KAFKA_BOOTSTRAP_SERVER}
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
