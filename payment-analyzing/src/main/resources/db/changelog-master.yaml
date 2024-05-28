@@ -2,3 +2,6 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: "changelogs/changelog-statistic-table.sql"
+  - include:
+      relativeToChangelogFile: true
+      file: "changelogs/changelog-statistic-init.sql"

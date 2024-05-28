@@ -31,4 +31,7 @@ springdoc:
 
 logging:
   level:
-    ru.vsu.csf.asashina.paymentprocessing.producer: TRACE
+    ru.vsu.csf.asashina.paymentprocessing: TRACE
+
+testing:
+  entities-amount: ${LOAD_TESTING_ENTITIES_AMOUNT:10000}

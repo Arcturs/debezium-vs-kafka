@@ -1,5 +1,5 @@
 create table if not exists payment(
-    id bigint primary key,
+    id bigserial primary key,
     payer varchar(250) not null,
     recipient varchar(250) not null,
     amount numeric(20, 2) not null,

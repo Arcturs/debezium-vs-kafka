@@ -45,6 +45,7 @@ services:
       DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
       DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
       KAFKA_BOOTSTRAP_SERVER: ${KAFKA_BOOTSTRAP_SERVER}
+      LOAD_TESTING_ENTITIES_AMOUNT: 10000
 
   processing-debezium:
     image: payment_backend
@@ -64,10 +65,11 @@ services:
       DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
       DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
       KAFKA_BOOTSTRAP_SERVER: ${KAFKA_BOOTSTRAP_SERVER}
+      LOAD_TESTING_ENTITIES_AMOUNT: 10000
 
-  analyzing:
+  analyzing-kafka:
     image: analyzing_backend
-    container_name: analyzing
+    container_name: analyzing-kafka
     build:
       context: payment-analyzing/.
     ports:
@@ -86,6 +88,32 @@ services:
       PAYMENT_DATABASE_NAME: ${PAYMENT_DB_NAME}
       PAYMENT_DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
       PAYMENT_DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      PAYMENT_DATABASE_TABLE: public.statistic
+      KAFKA_BOOTSTRAP_SERVER: ${KAFKA_BOOTSTRAP_SERVER}
+
+  analyzing-debezium:
+    image: analyzing_backend
+    container_name: analyzing-debezium
+    build:
+      context: payment-analyzing/.
+    ports:
+      - "8086:8080"
+      - "8097:8091"
+    depends_on:
+      - statisticDB
+    environment:
+      ACTIVE_PROFILE: "debezium"
+      DATABASE_HOST: ${STATISTIC_DB_HOST}
+      DATABASE_PORT: 5434
+      DATABASE_NAME: ${STATISTIC_DB_NAME}
+      DATABASE_USERNAME: ${STATISTIC_DB_USERNAME}
+      DATABASE_PASSWORD: ${STATISTIC_DB_PASSWORD}
+      PAYMENT_DATABASE_HOST: ${PAYMENT_DB_HOST}
+      PAYMENT_DATABASE_PORT: 5435
+      PAYMENT_DATABASE_NAME: ${PAYMENT_DB_NAME}
+      PAYMENT_DATABASE_USERNAME: ${PAYMENT_DB_USERNAME}
+      PAYMENT_DATABASE_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      PAYMENT_DATABASE_TABLE: public.statistic
       KAFKA_BOOTSTRAP_SERVER: ${KAFKA_BOOTSTRAP_SERVER}
 
   zookeeper:
@@ -109,6 +137,7 @@ services:
       KAFKA_MIN_INSYNC_REPLICAS: 1
       KAFKA_BROKER_ID: 1
       KAFKA_CREATE_TOPICS: "payment.change.log:1:4"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
 

@@ -14,7 +14,6 @@ data class DebeziumTargetProperties(
     val hostname: String,
     val port: String,
     val dbname: String,
-    val table: String,
     val username: String,
     val password: String
 )

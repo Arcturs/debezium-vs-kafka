@@ -15,7 +15,6 @@ class EventKafkaProducer(
 ) {
 
     fun sendMessage(message: EventMessage) {
-        log.trace("--- Отправка сообщения {} в Кафку ---", message)
         kafkaTemplate.send(topic, message)
             .whenComplete { _, exception ->
                 if (exception == null) {

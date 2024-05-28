@@ -9,6 +9,7 @@ import ru.vsu.csf.asashina.paymentprocessing.exception.PaymentDoesNotExistExcept
 import ru.vsu.csf.asashina.paymentprocessing.model.kafka.EventMessage
 import ru.vsu.csf.asashina.paymentprocessing.producer.EventKafkaProducer
 import ru.vsu.csf.asashina.paymentprocessing.repository.PaymentRepository
+import java.time.LocalDateTime
 
 @Service
 class DeletePaymentService(
@@ -30,7 +31,7 @@ class DeletePaymentService(
                     operation = OperationType.DELETE
                     paymentStatus = payment.status
                     rowInsertTime = payment.rowInsertTime
-                    rowUpdateTime = payment.rowUpdateTime
+                    rowUpdateTime = LocalDateTime.now()
                 }
             )
         }

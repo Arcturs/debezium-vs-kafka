@@ -25,7 +25,7 @@ class DebeziumConfig(
                 DATABASE_USER_PROPERTY to debeziumTargetProperties.username,
                 DATABASE_PASSWORD_PROPERTY to debeziumTargetProperties.password,
                 DATABASE_DBNAME_PROPERTY to debeziumTargetProperties.dbname,
-                TABLE_INCLUDE_LIST_PROPERTY to debeziumTargetProperties.table,
+                TABLE_EXCLUDE_LIST_PROPERTY to CONNECTOR_TABLE_EXCLUDE_LIST,
                 PLUGIN_NAME_PROPERTY to CONNECTOR_PLUGIN_NAME
             )
         )
@@ -35,6 +35,7 @@ class DebeziumConfig(
         const val CONNECTOR_TOPIC = "payment-analyzing-topic"
         const val CONNECTOR_CLASS = "io.debezium.connector.postgresql.PostgresConnector"
         const val CONNECTOR_OFFSET_STORAGE = "io.debezium.storage.jdbc.offset.JdbcOffsetBackingStore"
+        const val CONNECTOR_TABLE_EXCLUDE_LIST = "public.databasechangelog,public.databasechangeloglock"
         const val CONNECTOR_PLUGIN_NAME = "pgoutput"
 
         const val NAME_PROPERTY = "name"
@@ -49,7 +50,7 @@ class DebeziumConfig(
         const val DATABASE_USER_PROPERTY = "database.user"
         const val DATABASE_PASSWORD_PROPERTY = "database.password"
         const val DATABASE_DBNAME_PROPERTY = "database.dbname"
-        const val TABLE_INCLUDE_LIST_PROPERTY = "table.include.list"
+        const val TABLE_EXCLUDE_LIST_PROPERTY = "table.exclude.list"
         const val PLUGIN_NAME_PROPERTY = "plugin.name"
     }
 

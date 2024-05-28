@@ -17,6 +17,7 @@
 		<java.version>17</java.version>
 		<kotlin.version>1.8.0</kotlin.version>
 		<springdoc-openapi-starter-webmvc-ui.version>2.5.0</springdoc-openapi-starter-webmvc-ui.version>
+		<easy-random.version>5.0.0</easy-random.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -126,6 +127,11 @@
 			<artifactId>kotlin-test</artifactId>
 			<version>${kotlin.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jeasy</groupId>
+			<artifactId>easy-random-core</artifactId>
+			<version>${easy-random.version}</version>
 		</dependency>
 	</dependencies>
 

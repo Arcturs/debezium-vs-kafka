@@ -1,6 +1,7 @@
 package ru.vsu.csf.asashina.paymentanalyzing.model.entity
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import ru.vsu.csf.asashina.paymentanalyzing.dictionary.StatisticStatus
@@ -9,6 +10,7 @@ import ru.vsu.csf.asashina.paymentanalyzing.model.entity.Statistic.Companion.TAB
 @Table(value = TABLE_NAME)
 class Statistic {
 
+    @get:Id
     @get:Column
     @field:Schema(description = "ИД статистики", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
     var id: Long? = null

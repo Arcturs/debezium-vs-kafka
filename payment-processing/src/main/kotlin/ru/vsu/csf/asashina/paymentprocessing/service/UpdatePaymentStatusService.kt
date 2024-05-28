@@ -12,6 +12,7 @@ import ru.vsu.csf.asashina.paymentprocessing.model.dto.UpdatePaymentStatusReques
 import ru.vsu.csf.asashina.paymentprocessing.model.kafka.EventMessage
 import ru.vsu.csf.asashina.paymentprocessing.producer.EventKafkaProducer
 import ru.vsu.csf.asashina.paymentprocessing.repository.PaymentRepository
+import java.time.LocalDateTime
 
 @Service
 class UpdatePaymentStatusService(
@@ -28,10 +29,12 @@ class UpdatePaymentStatusService(
         if (FINAL_STATUSES.contains(payment.status)) {
             throw PaymentInFinalStatusException(message = "Платеж находится в конечном статусе, изменения не применены")
         }
+        val updateTime = LocalDateTime.now()
         repository.save(
             payment.apply {
                 status = request.actualStatus
                 comment = request.comment
+                rowUpdateTime = updateTime
             }
         )
         if (profile == CommonConstants.KAFKA_PROFILE) {
@@ -41,7 +44,7 @@ class UpdatePaymentStatusService(
                     operation = OperationType.UPDATE
                     paymentStatus = payment.status
                     rowInsertTime = payment.rowInsertTime
-                    rowUpdateTime = payment.rowUpdateTime
+                    rowUpdateTime = updateTime
                 }
             )
         }

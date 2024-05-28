@@ -1,5 +1,6 @@
 package ru.vsu.csf.asashina.paymentprocessing.model.entity
 
+import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import ru.vsu.csf.asashina.paymentprocessing.dictionary.PaymentStatus
@@ -10,6 +11,7 @@ import java.time.LocalDateTime
 @Table(value = TABLE_NAME)
 class Payment {
 
+    @get:Id
     @get:Column
     var id: Long? = null
 

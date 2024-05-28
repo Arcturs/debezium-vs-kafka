@@ -1,5 +1,5 @@
 create table if not exists statistic(
-    id bigint primary key,
+    id bigserial primary key,
     status varchar(50) not null,
     count int not null default 0
 );
