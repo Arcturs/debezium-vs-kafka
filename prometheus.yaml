@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'analyzing-kafka'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ 'host.docker.internal:8095' ]
+        labels:
+          application: 'payment-analyzing-kafka'
+  - job_name: 'analyzing-debezium'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ 'host.docker.internal:8097' ]
+        labels:
+          application: 'payment-analyzing-debezium'

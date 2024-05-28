@@ -42,7 +42,7 @@ class LoadTesting(
                 }
                 .map { it.id }
             log.trace("Сгенерированы сущности на создание")
-            Thread.sleep(100)
+            Thread.sleep(1000)
 
             for (i in 0 until verifyEntitiesAmount.toInt()) {
                 updatePaymentStatusService.updatePaymentStatus(
@@ -51,7 +51,7 @@ class LoadTesting(
                 )
             }
             log.trace("Изменены сущности на создание")
-            Thread.sleep(100)
+            Thread.sleep(1000)
 
             for (i in 0 until acceptOrDeclineEntitiesAmount.toInt()) {
                 updatePaymentStatusService.updatePaymentStatus(
@@ -64,7 +64,7 @@ class LoadTesting(
                 )
             }
             log.trace("Простановка конечного статуса выплат")
-            Thread.sleep(100)
+            Thread.sleep(1000)
 
             for (i in 0 until deleteEntitiesAmount.toInt()) {
                 deletePaymentService.deletePayment(entitiesId[i]!!)

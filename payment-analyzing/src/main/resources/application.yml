@@ -25,6 +25,7 @@ management:
     prometheus.enabled: true
     metrics.enabled: true
     loggers.enabled: true
+  endpoints.web.exposure.include: health,info,prometheus,metrics,loggers
 
 springdoc:
   swagger-ui:

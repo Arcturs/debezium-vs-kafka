@@ -23,6 +23,7 @@ management:
     prometheus.enabled: true
     metrics.enabled: true
     loggers.enabled: true
+  endpoints.web.exposure.include: health,info,prometheus,metrics,loggers
 
 springdoc:
   swagger-ui:
@@ -34,4 +35,4 @@ logging:
     ru.vsu.csf.asashina.paymentprocessing: TRACE
 
 testing:
-  entities-amount: ${LOAD_TESTING_ENTITIES_AMOUNT:10000}
+  entities-amount: ${LOAD_TESTING_ENTITIES_AMOUNT:1_000_000}
