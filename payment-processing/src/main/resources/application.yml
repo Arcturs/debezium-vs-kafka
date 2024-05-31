@@ -35,4 +35,4 @@ logging:
     ru.vsu.csf.asashina.paymentprocessing: TRACE
 
 testing:
-  entities-amount: ${LOAD_TESTING_ENTITIES_AMOUNT:1_000_000}
+  entities-amount: ${LOAD_TESTING_ENTITIES_AMOUNT:5_000_000}

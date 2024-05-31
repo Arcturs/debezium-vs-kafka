@@ -16,10 +16,10 @@ data class PaymentChangeLogRecord(
     var status: String? = null,
 
     @get:JsonAlias(value = [ "row_insert_time" ])
-    var rowInsertTime: Instant? = null,
+    var rowInsertTime: Long? = null,
 
     @get:JsonAlias(value = [ "row_update_time" ])
-    var rowUpdateTime: Instant? = null,
+    var rowUpdateTime: Long? = null,
     var comment: String? = null
 ) {
 

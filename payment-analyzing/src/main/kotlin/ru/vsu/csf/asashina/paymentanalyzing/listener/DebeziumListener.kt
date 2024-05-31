@@ -18,9 +18,12 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import ru.vsu.csf.asashina.paymentanalyzing.dictionary.PaymentStatus
+import ru.vsu.csf.asashina.paymentanalyzing.metric.RegisterMetricService
 import ru.vsu.csf.asashina.paymentanalyzing.model.debezium.PaymentChangeLogRecord
 import ru.vsu.csf.asashina.paymentanalyzing.service.ProcessPaymentChangeLogService
+import java.time.OffsetDateTime
 import java.util.concurrent.Executors
+import kotlin.math.abs
 import kotlin.system.measureTimeMillis
 
 @Component
@@ -28,9 +31,10 @@ class DebeziumListener(
     debeziumConfig: io.debezium.config.Configuration,
     private val objectMapper: ObjectMapper,
     private val processPaymentChangeLogService: ProcessPaymentChangeLogService,
+    private val metricService: RegisterMetricService,
     @Value("\${spring.profiles.active}")
     private val profile: String,
-    private var debeziumEngine: DebeziumEngine<RecordChangeEvent<SourceRecord>>? = null
+    private var debeziumEngine: DebeziumEngine<RecordChangeEvent<SourceRecord>>? = null,
 ) {
 
     init {
@@ -50,6 +54,7 @@ class DebeziumListener(
     private fun handleChangeEvents(recordChangeEvents: List<RecordChangeEvent<SourceRecord>>) {
         log.trace("[DEBEZIUM] Были получены изменения из БД paymentdb [DEBEZIUM]")
         val processTime = measureTimeMillis {
+            val receiveTime = OffsetDateTime.now().toEpochSecond()
             val records = recordChangeEvents.map { it.record() }
             val paymentStatusToCount = PaymentStatus.values()
                 .associateWith { 0 }
@@ -66,6 +71,9 @@ class DebeziumListener(
                         objectMapper.writeValueAsString(recordFieldMap),
                         PaymentChangeLogRecord::class.java
                     )
+                    metricService.registerQueueAwaitingMetric(
+                        abs((receiveTime - (paymentChangeLog.rowUpdateTime!! / 1_000_000)) * 1000)
+                    )
                     val coeff =
                         if (operation == Operation.DELETE) -1
                         else 1
@@ -75,11 +83,12 @@ class DebeziumListener(
             processPaymentChangeLogService.process(paymentStatusToCount)
             log.trace("[DEBEZIUM] Успешно обработано {} записей [DEBEZIUM]", paymentStatusToCount.values.sum())
         }
+        metricService.registerAmountOfProcessedRecords(recordChangeEvents.size)
         log.trace("[DEBEZIUM] Записи были обработаны за {} миллисекунд [DEBEZIUM]", processTime)
     }
 
     @PostConstruct
-    private fun start() = debeziumEngine?.let { Executors.newFixedThreadPool(4).execute(it) }
+    private fun start() = debeziumEngine?.let { Executors.newFixedThreadPool(1).execute(it) }
 
     @PreDestroy
     private fun stop() = debeziumEngine?.close()
