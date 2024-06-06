@@ -65,6 +65,7 @@ class DebeziumListener(
                     val recordCondition =
                         if (operation == Operation.DELETE) BEFORE
                         else AFTER
+                    if (operation == Operation.READ) return@forEach
                     val recordConditionStruct = record.get(recordCondition) as Struct
                     val recordFieldMap = mapStructToMap(recordConditionStruct)
                     val paymentChangeLog = objectMapper.readValue(
