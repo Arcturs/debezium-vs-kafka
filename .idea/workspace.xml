@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f9c6922-b9a7-46cc-aac6-d9a1ce33ec2c" name="Changes" comment="Сохранение дашборды">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +84,7 @@
       <recent name="ru.vsu.csf.asashina.paymentprocessing.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml.analyzing-kafka: Compose Deployment">
+  <component name="RunManager" selected="Docker.docker-compose.yaml.prometheus: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="payment-processing" />
       <method v="2">
@@ -111,17 +112,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="docker-compose.yaml.analyzing-debezium: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="analyzing-debezium" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yaml" />
-        </settings>
-      </deployment>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yaml.analyzing-kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -150,12 +142,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.processing-debezium: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.prometheus: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="processing-debezium" />
+              <option value="prometheus" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -163,12 +155,25 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.processing-kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.statisticDB: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="processing-kafka" />
+              <option value="statisticDB" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.zookeeper: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="zookeeper" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -178,11 +183,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yaml.analyzing-kafka: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.analyzing-debezium: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.processing-debezium: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.processing-kafka: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.prometheus: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.kafka: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.zookeeper: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.analyzing-kafka: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.statisticDB: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
