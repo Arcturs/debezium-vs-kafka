@@ -14,4 +14,4 @@ docker-compose up -d
 При запуске производится автоматическое тестирование производительности. Чтобы увидеть дашборды, необходимо перейти
 на [Grafana](http://localhost:3001), загрузить дашборду, которая находится в папке проекта, и увидеть результаты. 
 Пример:
-![img.png](dashboard_example.png)
+![dashboard_example](https://github.com/Arcturs/debezium-vs-kafka/blob/master/dashboard_example.png)
