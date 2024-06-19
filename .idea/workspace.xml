@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f9c6922-b9a7-46cc-aac6-d9a1ce33ec2c" name="Changes" comment="Сохранение дашборды">
+    <list default="true" id="2f9c6922-b9a7-46cc-aac6-d9a1ce33ec2c" name="Changes" comment="Правка мини бага">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-processing/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-processing/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +83,7 @@
       <recent name="ru.vsu.csf.asashina.paymentprocessing.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml.prometheus: Compose Deployment">
+  <component name="RunManager" selected="Docker.docker-compose.yaml.processing-debezium: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="payment-processing" />
       <method v="2">
@@ -113,19 +112,8 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yaml.analyzing-kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="analyzing-kafka" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yaml" />
-        </settings>
+        <settings />
       </deployment>
       <method v="2" />
     </configuration>
@@ -142,12 +130,25 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.prometheus: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.processing-debezium: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="prometheus" />
+              <option value="processing-debezium" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.processing-kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="processing-kafka" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -183,10 +184,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yaml.prometheus: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.processing-debezium: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.processing-kafka: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.kafka: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.zookeeper: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.analyzing-kafka: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.statisticDB: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -220,6 +221,7 @@
       <workItem from="1717149689955" duration="2319000" />
       <workItem from="1717165068959" duration="2317000" />
       <workItem from="1717513655776" duration="1930000" />
+      <workItem from="1718813920148" duration="1283000" />
     </task>
     <task id="LOCAL-00001" summary="Полная реализация сервиса по обработке выплат (за исключением kafka) + инициализация сервиса по анализу выплат">
       <created>1714991345282</created>
@@ -298,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717167822745</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Правка мини бага">
+      <created>1717882173177</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717882173177</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +339,8 @@
     <MESSAGE value="Добавление grafana и prometheus в качестве зависимостей" />
     <MESSAGE value="Добавление метрик" />
     <MESSAGE value="Сохранение дашборды" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сохранение дашборды" />
+    <MESSAGE value="Правка мини бага" />
+    <option name="LAST_COMMIT_MESSAGE" value="Правка мини бага" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
